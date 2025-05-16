@@ -1,9 +1,13 @@
+using HexColorGenerator.ViewModel;
+
 namespace HexColorGenerator.Views;
 
-public partial class SavedColorsxaml : ContentPage
+public partial class SavedColorsPage : ContentPage
 {
-	public SavedColorsxaml()
+	private readonly SavedColorsViewModel _savedColorsViewModel;
+	public SavedColorsPage(SavedColorsViewModel viewModel)
 	{
 		InitializeComponent();
+		BindingContext = viewModel;
 	}
 }

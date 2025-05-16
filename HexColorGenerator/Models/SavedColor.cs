@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HexColorGenerator.Models
 {
-    public class SavedColors
+    public class SavedColor
     {
         public string HexCode { get; set; }
         public string RgbCode { get; set; }

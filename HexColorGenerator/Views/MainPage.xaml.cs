@@ -1,11 +1,13 @@
 using CommunityToolkit.Maui;
 using CommunityToolkit.Maui.Alerts;
+using HexColorGenerator.ViewModel;
 using System.Diagnostics;
 
 namespace HexColorGenerator.Views;
 
 public partial class MainPage : ContentPage
 {
+	private readonly SavedColorsViewModel _savedColorsViewModel = new SavedColorsViewModel();
 	bool isRandom;
 	string hexCode;
 	string rgbCode;
@@ -112,6 +114,16 @@ public partial class MainPage : ContentPage
 
     private void favoriteColors_Tapped(object sender, TappedEventArgs e)
     {
-		
+		Navigation.PushAsync(new SavedColorsPage(_savedColorsViewModel));
+    }
+
+    private async void AddColor_Tapped(object sender, TappedEventArgs e)
+    {
+        if (!string.IsNullOrWhiteSpace(hexCode))
+        {
+            _savedColorsViewModel.addColor(hexCode, rgbCode);
+            var toastFavColor = Toast.Make("Added to Favorites", CommunityToolkit.Maui.Core.ToastDuration.Short, 12);
+            await toastFavColor.Show();
+        }
     }
 }

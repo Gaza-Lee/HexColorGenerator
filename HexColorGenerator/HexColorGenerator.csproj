@@ -65,12 +65,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Views\SavedColorsPage.xaml.cs">
-	    <DependentUpon>SavedColorsPage.xaml</DependentUpon>
-	  </Compile>
-	</ItemGroup>
-
-	<ItemGroup>
 	  <MauiXaml Update="Views\MainPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

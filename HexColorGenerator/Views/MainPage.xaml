@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:HexColorGenerator.Models"
              x:Class="HexColorGenerator.Views.MainPage"
+             NavigationPage.HasNavigationBar="False"
              Title="MainPage">
 
     <ContentPage.Resources>
@@ -147,7 +148,11 @@
                         <Frame Padding="5,0">
                             <Label Text="{x:Static models:Icons.favoriteIcon}"
                                        FontFamily="MaterialIcon"
-                                       FontSize="50"/>
+                                       FontSize="50">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer x:Name="AddColor" Tapped="AddColor_Tapped"/>
+                                </Label.GestureRecognizers>
+                            </Label>
                         </Frame>
                     </HorizontalStackLayout>
                 </VerticalStackLayout>
