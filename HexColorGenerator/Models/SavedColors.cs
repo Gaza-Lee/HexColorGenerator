@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace HexColorGenerator.Models
 {
-    public class Icons
+    public class SavedColors
     {
-        public static string copyIcon = "\ue14d";
-        public static string favoriteIcon = "\ue838";
+        public string HexCode { get; set; }
+        public string RgbCode { get; set; }
     }
 }

@@ -8,6 +8,7 @@ public partial class MainPage : ContentPage
 {
 	bool isRandom;
 	string hexCode;
+	string rgbCode;
 	public MainPage()
 	{
 		InitializeComponent();
@@ -42,7 +43,8 @@ public partial class MainPage : ContentPage
 		Container.BackgroundColor = color;
 		hexCode = color.ToHex();
 		lblHex.Text = hexCode;
-        lblRGB.Text = $"RGB ({redEntry.Text}, {greenEntry.Text}, {blueEntry.Text})";
+		rgbCode = $"RGB ({redEntry.Text}, {greenEntry.Text}, {blueEntry.Text})";
+		lblRGB.Text = rgbCode;
     }
 
     private void Entry_TextChanged(object sender, TextChangedEventArgs e)
@@ -89,8 +91,27 @@ public partial class MainPage : ContentPage
 
     private async void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
     {
-		await Clipboard.SetTextAsync(hexCode);
-		var toast = Toast.Make("Color Copied", CommunityToolkit.Maui.Core.ToastDuration.Short, 12);
-		await toast.Show();
+		if (sender is Label label)
+		{
+            switch (label)
+            {
+                case var _ when label == lblCopyHex:
+                    await Clipboard.SetTextAsync(hexCode);
+                    var toastHex = Toast.Make("Hex Color Copied", CommunityToolkit.Maui.Core.ToastDuration.Short, 12);
+                    await toastHex.Show();
+                    break;
+
+				case var _ when label == lblCopyRGB:
+					await Clipboard.SetTextAsync(rgbCode.ToLower());
+					var toastRGB = Toast.Make("RGB Code Copied",CommunityToolkit.Maui.Core.ToastDuration.Short, 12);
+					await toastRGB.Show();
+					break;
+            }
+        }
+    }
+
+    private void favoriteColors_Tapped(object sender, TappedEventArgs e)
+    {
+		
     }
 }

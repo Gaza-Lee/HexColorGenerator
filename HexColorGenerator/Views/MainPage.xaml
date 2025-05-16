@@ -10,123 +10,149 @@
         <Color x:Key="Secondary">#775752</Color>
         <Color x:Key="Tertiary">#705c2e</Color>
     </ContentPage.Resources>
-    
-    <Grid x:Name="Container"
+
+    <Grid>
+        <Frame BackgroundColor="BlueViolet"
+               HorizontalOptions="End"
+               VerticalOptions="Start"
+               Margin="5"
+               Padding="10,5"
+               CornerRadius="10"
+               ZIndex="1">
+            <Label Text="Favorites"
+                   TextColor="#fff"
+                   x:Name="favoriteColors"
+                   FontSize="20">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="favoriteColors_Tapped"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </Frame>
+        <Grid x:Name="Container"
           BackgroundColor="#000">
-        <Frame Margin="10, 0"
+            <Frame Margin="10, 0"
                 VerticalOptions="Center">
-            <VerticalStackLayout Spacing="15"
+                <VerticalStackLayout Spacing="15"
                                  VerticalOptions="Center">
-                <Label  FontAttributes="Bold"
+                    <Label  FontAttributes="Bold"
                         FontSize="Large"
                         HorizontalTextAlignment="Center"
                         Text="Hex Color Generator"/>
-                <!--Red stack-->
-                <VerticalStackLayout>
-                    <Label Text="Red Color Value:"/>
-                    <Frame HorizontalOptions="Start" 
+                    <!--Red stack -->
+                    <VerticalStackLayout>
+                        <Label Text="Red Color Value:"/>
+                        <Frame HorizontalOptions="Start" 
                             Margin="0"
                             Padding="5,0">
-                        <Entry Placeholder="Red Color Value"
+                            <Entry Placeholder="Red Color Value"
                                HorizontalOptions="Start"
                                x:Name="redEntry"
                                TextChanged="Entry_TextChanged"/>
-                    </Frame>
-                    <Slider x:Name="redSlider"
+                        </Frame>
+                        <Slider x:Name="redSlider"
                             MaximumTrackColor="{StaticResource Tertiary}"
                             MinimumTrackColor="{StaticResource Secondary}"
                             Maximum="255"
                             ThumbColor="{StaticResource Primary}"
                             ValueChanged="Slider_ValueChanged"/>
-                </VerticalStackLayout>
-                
-                <!--Green Stack-->
-                <VerticalStackLayout>
-                    <Label Text="Green Color Value:"/>
-                    <Frame HorizontalOptions="Start" 
+                    </VerticalStackLayout>
+
+                    <!--Green Stack -->
+                    <VerticalStackLayout>
+                        <Label Text="Green Color Value:"/>
+                        <Frame HorizontalOptions="Start" 
                            Margin="0"
                            Padding="5,0">
-                        <Entry Placeholder="Red Color Value"
+                            <Entry Placeholder="Red Color Value"
                                HorizontalOptions="Start"
                                x:Name="greenEntry"
                                TextChanged="Entry_TextChanged"/>
-                    </Frame>
-                    <Slider x:Name="greenSlider"
+                        </Frame>
+                        <Slider x:Name="greenSlider"
                             MaximumTrackColor="{StaticResource Tertiary}"
                             MinimumTrackColor="{StaticResource Secondary}"
                             ThumbColor="{StaticResource Primary}"
                             Maximum="255"
                             ValueChanged="Slider_ValueChanged"/>
-                </VerticalStackLayout>
-                <!--Blue Stack-->
-                <VerticalStackLayout>
-                    <Label Text="Blue Color Value:"/>
-                    <Frame HorizontalOptions="Start" 
+                    </VerticalStackLayout>
+                    <!--Blue Stack-->
+                    <VerticalStackLayout>
+                        <Label Text="Blue Color Value:"/>
+                        <Frame HorizontalOptions="Start" 
                            Margin="0"
                            Padding="5,0">
-                        <Entry Placeholder="Red Color Value"
+                            <Entry Placeholder="Red Color Value"
                                HorizontalOptions="Start"
                                x:Name="blueEntry"
                                TextChanged="Entry_TextChanged"/>
-                    </Frame>
-                    <Slider x:Name="blueSlider"
+                        </Frame>
+                        <Slider x:Name="blueSlider"
                             MaximumTrackColor="{StaticResource Tertiary}"
                             MinimumTrackColor="{StaticResource Secondary}"
                             Maximum="255"
                             ThumbColor="{StaticResource Primary}"
                             ValueChanged="Slider_ValueChanged"/>
-                </VerticalStackLayout>
-                
-                <!--Hex code-->
-                <Frame CornerRadius="25"
+                    </VerticalStackLayout>
+
+                    <!--Hex code-->
+                    <Frame CornerRadius="25"
                        HorizontalOptions="Center"
                        Padding="10">
-                    <VerticalStackLayout>
-                        <HorizontalStackLayout Spacing="10">
-                            <Label x:Name="lblHex"
+                        <VerticalStackLayout>
+                            <HorizontalStackLayout Spacing="10">
+                                <Label x:Name="lblHex"
                                    HorizontalTextAlignment="End"
                                    Text="Hex Value:#000000"
                                    VerticalOptions="Center"
                                    FontSize="16"/>
-                            <Label Text="{x:Static models:Icons.copyIcon}"
+                                <Label Text="{x:Static models:Icons.copyIcon}"
                                    Style="{x:StaticResource MaterialIcon}"
                                    x:Name="lblCopyHex">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
-                                </Label.GestureRecognizers>
-                            </Label>
-                        </HorizontalStackLayout>
-                    </VerticalStackLayout>
-                </Frame>
-                
-                <!--RGB Code-->
-                <Frame CornerRadius="25"
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <!--RGB Code-->
+                    <Frame CornerRadius="25"
                        HorizontalOptions="Center" Padding="10,5">
-                    <VerticalStackLayout>
-                        <HorizontalStackLayout Spacing="10">
-                            <Label x:Name="lblRGB"
+                        <VerticalStackLayout>
+                            <HorizontalStackLayout Spacing="10">
+                                <Label x:Name="lblRGB"
                                     HorizontalTextAlignment="End"
                                     Text="RGB"
                                     VerticalOptions="Center"
                                     FontSize="16"/>
-                            <Label Text="{x:Static models:Icons.copyIcon}"
+                                <Label Text="{x:Static models:Icons.copyIcon}"
                                     Style="{x:StaticResource MaterialIcon}"
                                     x:Name="lblCopyRGB">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
-                                </Label.GestureRecognizers>
-                            </Label>
-                        </HorizontalStackLayout>
-                    </VerticalStackLayout>
-                </Frame>
-                
-                <Button x:Name="btnRandom"
-                        Text="Generate Random"
-                        Background="{StaticResource Primary}"
-                        FontAttributes="Bold"
-                        FontSize="20"
-                        Clicked="btnRandom_Clicked"/>
-            </VerticalStackLayout>
-        </Frame>
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                        <Button x:Name="btnRandom"
+                                Text="Generate Random"
+                                Background="{StaticResource Primary}"
+                                FontAttributes="Bold"
+                                FontSize="20"
+                                Clicked="btnRandom_Clicked"/>
+                        <Frame Padding="5,0">
+                            <Label Text="{x:Static models:Icons.favoriteIcon}"
+                                       FontFamily="MaterialIcon"
+                                       FontSize="50"/>
+                        </Frame>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
+        </Grid>
+
     </Grid>
 </ContentPage>
