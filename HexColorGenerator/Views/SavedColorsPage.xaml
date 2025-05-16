@@ -3,19 +3,83 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HexColorGenerator.Views.SavedColorsPage"
              NavigationPage.HasNavigationBar="True"
-             Title="SavedColorsPage">
+             xmlns:viewModel="clr-namespace:HexColorGenerator.ViewModel"
+             xmlns:model="clr-namespace:HexColorGenerator.Models"
+             x:DataType="viewModel:SavedColorsViewModel"
+             Title="Saved Colors">
     <VerticalStackLayout>
-        <ListView ItemsSource="{Binding SavedColors}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout>
-                            <BoxView WidthRequest="30" HeightRequest="30" BackgroundColor="{Binding HexCode}"/>
-                            <Label Text="{Binding HexCode}"/>
-                        </StackLayout>
-                    </ViewCell>
+        <CollectionView ItemsSource="{Binding SavedColors}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="5" Orientation="Vertical"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:SavedColor">
+                    <VerticalStackLayout Spacing="10">
+                        <Frame BackgroundColor="{Binding HexCode}" Padding="10"
+                               Margin="5,0"
+                               CornerRadius="15">
+                            <Grid RowDefinitions="auto,auto,auto"
+                                  RowSpacing="2">
+                                <Border Grid.Row="0" 
+                                        HorizontalOptions="End"
+                                        Padding="2"
+                                        StrokeThickness="0"
+                                        Background="#fff"
+                                        StrokeShape="RoundRectangle 100">
+                                    <Label Text="{x:Static model:Icons.deleteIcon}"
+                                           FontFamily="MaterialIcon"
+                                           FontSize="30"
+                                           TextColor="Red">
+
+                                    </Label>
+                                </Border>
+                                <Border Grid.Row="1"
+                                        BackgroundColor="#000"
+                                        HorizontalOptions="Start"
+                                        StrokeShape="RoundRectangle 5"
+                                        Padding="10,5,5,5"
+                                        StrokeThickness="0">
+                                    <HorizontalStackLayout Spacing="5">
+                                        <Label Text="{Binding HexCode}"
+                                               FontSize="20"
+                                               ZIndex="1"
+                                               TextColor="#fff"
+                                               VerticalOptions="Center"/>
+                                        <Label Text="{x:Static model:Icons.copyIcon}"
+                                               Style="{x:StaticResource MaterialIcon}"
+                                               HorizontalOptions="End"
+                                               VerticalOptions="Center"/>
+                                    </HorizontalStackLayout>
+                                </Border>
+                                <HorizontalStackLayout Grid.Row="2">
+                                    <Border 
+                                            BackgroundColor="#000"
+                                            HorizontalOptions="Start"
+                                            StrokeShape="RoundRectangle 5"
+                                            Padding="10,5"
+                                            StrokeThickness="0">
+
+                                        <Label Text="{Binding RgbCode}"
+                                               FontSize="20"
+                                               ZIndex="1"
+                                               TextColor="#fff"
+                                               VerticalOptions="Center"/>
+                                    </Border>
+                                    <Border Background="#000"
+                                            Padding="5"
+                                            StrokeShape="RoundRectangle 5">
+                                        <Label Text="{x:Static model:Icons.copyIcon}"
+                                               Style="{x:StaticResource MaterialIcon}"
+                                               HorizontalOptions="End"
+                                               VerticalOptions="Center"
+                                               TextColor="White"/>
+                                    </Border>
+                                </HorizontalStackLayout>
+                            </Grid>
+                        </Frame>
+                    </VerticalStackLayout>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </VerticalStackLayout>
 </ContentPage>

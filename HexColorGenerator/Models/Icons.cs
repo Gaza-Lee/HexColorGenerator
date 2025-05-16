@@ -10,5 +10,6 @@ namespace HexColorGenerator.Models
     {
         public static string copyIcon = "\ue14d";
         public static string favoriteIcon = "\ue838";
+        public static string deleteIcon = "\ue92b";
     }
 }
