@@ -48,10 +48,11 @@
                                         <Label Text="{x:Static model:Icons.copyIcon}"
                                                Style="{x:StaticResource MaterialIcon}"
                                                HorizontalOptions="End"
-                                               VerticalOptions="Center"/>
+                                               VerticalOptions="Center"
+                                               TextColor="#fff"/>
                                     </HorizontalStackLayout>
                                 </Border>
-                                <HorizontalStackLayout Grid.Row="2">
+                                <HorizontalStackLayout Grid.Row="2" Spacing="5">
                                     <Border 
                                             BackgroundColor="#000"
                                             HorizontalOptions="Start"
@@ -67,7 +68,8 @@
                                     </Border>
                                     <Border Background="#000"
                                             Padding="5"
-                                            StrokeShape="RoundRectangle 5">
+                                            StrokeShape="RoundRectangle 5"
+                                            StrokeThickness="0">
                                         <Label Text="{x:Static model:Icons.copyIcon}"
                                                Style="{x:StaticResource MaterialIcon}"
                                                HorizontalOptions="End"
