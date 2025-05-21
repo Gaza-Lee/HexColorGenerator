@@ -3,9 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:HexColorGenerator.Models"
              x:Class="HexColorGenerator.Views.MainPage"
+             xmlns:viewModel="clr-namespace:HexColorGenerator.ViewModel"
              NavigationPage.HasNavigationBar="False"
              Title="MainPage">
-
+    
     <ContentPage.Resources>
         <Color x:Key="Primary">#ab3527</Color>
         <Color x:Key="Secondary">#775752</Color>
@@ -47,15 +48,14 @@
                             Padding="5,0">
                             <Entry Placeholder="Red Color Value"
                                HorizontalOptions="Start"
-                               x:Name="redEntry"
-                               TextChanged="Entry_TextChanged"/>
+                               Text="{Binding Red, Mode=TwoWay}"
+                               Keyboard="Numeric"/>
                         </Frame>
-                        <Slider x:Name="redSlider"
+                        <Slider Value="{Binding Red, Mode=TwoWay}"
                             MaximumTrackColor="{StaticResource Tertiary}"
                             MinimumTrackColor="{StaticResource Secondary}"
                             Maximum="255"
-                            ThumbColor="{StaticResource Primary}"
-                            ValueChanged="Slider_ValueChanged"/>
+                            ThumbColor="{StaticResource Primary}"/>
                     </VerticalStackLayout>
 
                     <!--Green Stack -->
@@ -64,35 +64,33 @@
                         <Frame HorizontalOptions="Start" 
                            Margin="0"
                            Padding="5,0">
-                            <Entry Placeholder="Red Color Value"
+                            <Entry Placeholder="Green Color Value"
                                HorizontalOptions="Start"
-                               x:Name="greenEntry"
-                               TextChanged="Entry_TextChanged"/>
+                               Text="{Binding Green, Mode=TwoWay}"
+                               Keyboard="Numeric"/>
                         </Frame>
-                        <Slider x:Name="greenSlider"
+                        <Slider Value="{Binding Green, Mode=TwoWay}"
                             MaximumTrackColor="{StaticResource Tertiary}"
                             MinimumTrackColor="{StaticResource Secondary}"
                             ThumbColor="{StaticResource Primary}"
-                            Maximum="255"
-                            ValueChanged="Slider_ValueChanged"/>
+                            Maximum="255"/>
                     </VerticalStackLayout>
+                    
                     <!--Blue Stack-->
                     <VerticalStackLayout>
                         <Label Text="Blue Color Value:"/>
                         <Frame HorizontalOptions="Start" 
                            Margin="0"
                            Padding="5,0">
-                            <Entry Placeholder="Red Color Value"
+                            <Entry Placeholder="Blue Color Value"
                                HorizontalOptions="Start"
-                               x:Name="blueEntry"
-                               TextChanged="Entry_TextChanged"/>
+                               Text="{Binding Blue, Mode=TwoWay}"/>
                         </Frame>
-                        <Slider x:Name="blueSlider"
+                        <Slider Value="{Binding Blue, Mode=TwoWay}"
                             MaximumTrackColor="{StaticResource Tertiary}"
                             MinimumTrackColor="{StaticResource Secondary}"
                             Maximum="255"
-                            ThumbColor="{StaticResource Primary}"
-                            ValueChanged="Slider_ValueChanged"/>
+                            ThumbColor="{StaticResource Primary}"/>
                     </VerticalStackLayout>
 
                     <!--Hex code-->
@@ -101,16 +99,14 @@
                        Padding="10">
                         <VerticalStackLayout>
                             <HorizontalStackLayout Spacing="10">
-                                <Label x:Name="lblHex"
+                                <Label Text="{Binding HexCode}"
                                    HorizontalTextAlignment="End"
-                                   Text="Hex Value:#000000"
                                    VerticalOptions="Center"
                                    FontSize="16"/>
                                 <Label Text="{x:Static models:Icons.copyIcon}"
-                                   Style="{x:StaticResource MaterialIcon}"
-                                   x:Name="lblCopyHex">
+                                   Style="{x:StaticResource MaterialIcon}">
                                     <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                        <TapGestureRecognizer Command="{Binding CopyHexCommand}"/>
                                     </Label.GestureRecognizers>
                                 </Label>
                             </HorizontalStackLayout>
@@ -122,16 +118,15 @@
                        HorizontalOptions="Center" Padding="10,5">
                         <VerticalStackLayout>
                             <HorizontalStackLayout Spacing="10">
-                                <Label x:Name="lblRGB"
+                                <Label Text="{Binding RgbCode}"
                                     HorizontalTextAlignment="End"
-                                    Text="RGB"
                                     VerticalOptions="Center"
                                     FontSize="16"/>
                                 <Label Text="{x:Static models:Icons.copyIcon}"
                                     Style="{x:StaticResource MaterialIcon}"
                                     x:Name="lblCopyRGB">
                                     <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                        <TapGestureRecognizer Command="{Binding CopyRgbCommand}"/>
                                     </Label.GestureRecognizers>
                                 </Label>
                             </HorizontalStackLayout>
@@ -139,18 +134,17 @@
                     </Frame>
 
                     <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
-                        <Button x:Name="btnRandom"
+                        <Button Command="{Binding GenerateRandomCommand}"
                                 Text="Generate Random"
                                 Background="{StaticResource Primary}"
                                 FontAttributes="Bold"
-                                FontSize="20"
-                                Clicked="btnRandom_Clicked"/>
+                                FontSize="20"/>
                         <Frame Padding="5,0">
                             <Label Text="{x:Static models:Icons.favoriteIcon}"
                                        FontFamily="MaterialIcon"
                                        FontSize="50">
                                 <Label.GestureRecognizers>
-                                    <TapGestureRecognizer x:Name="AddColor" Tapped="AddColor_Tapped"/>
+                                    <TapGestureRecognizer  Command="{Binding AddToFavoritesCommand}"/>
                                 </Label.GestureRecognizers>
                             </Label>
                         </Frame>
