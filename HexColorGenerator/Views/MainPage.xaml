@@ -31,7 +31,7 @@
             </Label>
         </Frame>
         <Grid x:Name="Container"
-          BackgroundColor="#000">
+          BackgroundColor="{Binding CurrentColor}">
             <Frame Margin="10, 0"
                 VerticalOptions="Center">
                 <VerticalStackLayout Spacing="15"
@@ -132,13 +132,16 @@
                             </HorizontalStackLayout>
                         </VerticalStackLayout>
                     </Frame>
-
+                    
+                    <!--Generate Random Button-->
                     <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
                         <Button Command="{Binding GenerateRandomCommand}"
                                 Text="Generate Random"
-                                Background="{StaticResource Primary}"
+                                Background="{Binding CurrentColor}"
                                 FontAttributes="Bold"
                                 FontSize="20"/>
+                        
+                        <!--Add to favorite label-->
                         <Frame Padding="5,0">
                             <Label Text="{x:Static models:Icons.favoriteIcon}"
                                        FontFamily="MaterialIcon"

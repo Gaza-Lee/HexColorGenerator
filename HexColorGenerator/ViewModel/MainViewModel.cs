@@ -1,15 +1,8 @@
-﻿using CommunityToolkit.Mvvm.Input;
-using HexColorGenerator.Views;
-using System;
-using Microsoft.Maui.Graphics;
-using System.Collections.Generic;
+﻿using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Mvvm.Input;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using CommunityToolkit.Maui.Alerts;
 
 namespace HexColorGenerator.ViewModel
 {
@@ -75,6 +68,7 @@ namespace HexColorGenerator.ViewModel
             CopyHexCommand = new AsyncRelayCommand(CopyHexToClipboard);
             CopyRgbCommand = new AsyncRelayCommand(CopyRgbToClipboard);
             Red = 0; Green = 0; Blue = 0;
+            UpdateColor();
         }
 
         private async Task CopyHexToClipboard()
@@ -87,12 +81,12 @@ namespace HexColorGenerator.ViewModel
 
         private async Task CopyRgbToClipboard()
         {
-            if(string.IsNullOrWhiteSpace(RgbCode))
+            if (string.IsNullOrWhiteSpace(RgbCode))
                 await Clipboard.SetTextAsync(RgbCode);
             var rgbToast = Toast.Make("rgb Code Copied", CommunityToolkit.Maui.Core.ToastDuration.Short, 12);
             await rgbToast.Show();
         }
-      
+
 
         private void UpdateColor()
         {
