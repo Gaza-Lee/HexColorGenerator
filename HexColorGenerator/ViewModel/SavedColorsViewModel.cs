@@ -23,7 +23,7 @@ namespace HexColorGenerator.ViewModel
         public SavedColorsViewModel()
         {
             SavedColors = new ObservableCollection<SavedColor> ();
-            DeleteCommand = new RelayCommand<SavedColor>(DeleteColor);
+            DeleteCommand = new RelayCommand<SavedColor>(async(color) => await DeleteColor(color));
             LoadColors();
         }
 
@@ -39,12 +39,24 @@ namespace HexColorGenerator.ViewModel
             }
         }
 
-       private void DeleteColor(SavedColor color)
+       private async Task DeleteColor(SavedColor color)
         {
             if (color != null && SavedColors.Contains(color))
             {
-                SavedColors.Remove(color);
-                SaveColors();
+                bool confirm = await Application.Current.MainPage.DisplayAlert(
+                    "Confirm Delete",
+                    "Are you sure you want to delete saved color?",
+                    "Yes",
+                    "No"
+                );
+
+                if (confirm)
+                {
+                    SavedColors.Remove(color);
+                    SaveColors();
+                    var deleteToast = Toast.Make("Color Deleted Successfully", CommunityToolkit.Maui.Core.ToastDuration.Short, 6);
+                    await deleteToast.Show();
+                }
             }
         }
 
